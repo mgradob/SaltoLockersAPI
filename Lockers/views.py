@@ -103,9 +103,9 @@ class LockersFilter(django_filters.FilterSet):
         #fields = ['locker_id', 'locker_match', 'locker_status', 'fk_area']
 
 
-class LockersSearch(generics.ListCreateAPIView):
-    queryset = Lockers.objects.all()
-    serializer_class = LockersSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    filter_class = LockersFilter
+# class LockersSearch(generics.ListCreateAPIView):
+#     queryset = Lockers.objects.all()
+#     serializer_class = LockersSerializer
+#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+#     filter_class = LockersFilter
 
