@@ -35,9 +35,11 @@ class Areas(models.Model):
 class Lockers(models.Model):
     locker_id = models.IntegerField(primary_key=True)
     locker_name = models.CharField(max_length=20, null=True, blank=True)
-    locker_match = models.CharField(max_length=50, null=True, blank=True)
+    locker_rent_confirmed = models.BooleanField(default=False)
+    locker_rent_type = models.CharField(max_length=20, null=True, blank=True)
     locker_status = models.CharField(max_length=20, null=True, blank=True)
     locker_start_time = models.DateTimeField('%Y-%m-%d %H:%M', null=True, blank=True)
+    locker_end_time = models.DateTimeField('%Y-%m-%d %H:%M', null=True, blank=True)
     fk_area = models.ForeignKey('Areas')
     fk_user = models.ForeignKey('Users', null=True, blank=True)
 
@@ -48,8 +50,8 @@ class Lockers(models.Model):
 class Rates(models.Model):
     rate_id = models.IntegerField(primary_key=True)
     rate_name = models.CharField(max_length=50, null=True, blank=True)
-    rate_rate = models.DecimalField(max_digits=5, decimal_places=2, default=0)
-    rate_unit = models.CharField(max_length=10)
+    rate_rate = models.DecimalField(max_digits=10, decimal_places=6, default=0)
+    rate_unit = models.CharField(max_length=10,default='h')
     rate_currency = models.CharField(max_length=10, default='MXN', null=True, blank=True)
 
     def __unicode__(self):

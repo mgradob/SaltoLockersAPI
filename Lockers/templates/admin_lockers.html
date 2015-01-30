@@ -1,30 +1,33 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+
+<html lang="en" >
   <head>
-    {% include "includeScripts.html" %}
-    {% include "admin_lockersScripts.html" %}
 
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administración de lockers</title>
-  </head>
-  <body>
-    <nav class="top-bar" data-topbar>
-    <ul class="title-area">
+    <meta name="viewport" content="width=device-width" />
+    <title>Administración de lockers | CITA</title>
+    {% include "includeScripts.html" %}
 
-      <li class="name">
-        <h1>
-          <a href="#">
-            Administración de Lockers
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
+    <script src="{{ STATIC_URL }}js/app/admin_lockers.js"></script>
+    <script src="{{ STATIC_URL }}js/app/csrf.js"></script>
+
+  </head>
+
+  <body>
+    <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1>
+              <a href="#">
+                Administración de Lockers
+              </a>
+            </h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+        </ul>
+
 
     <section class="top-bar-section">
-
-
 
       <ul class="left">
         <li class="divider"></li>
@@ -55,61 +58,78 @@
         <li class="divider"></li>
       </ul>
     </section>
-  </nav>
+    </nav>
 
-  <div class="row">
+    <div class="row">
     <h3 id="titulo">Lockers</h3>
-  </div>
+    </div>
 
-  <div class="row">
 
-    <div class="large-9 columns">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre de locker</th>
-              <th width="100">Usuario</th>
-              <th >Estatus</th>
-              <th >Fecha de Inicio</th>
-              <th >Hora de inicio</th>
-              <th >Area</th>
-              <th width="200dp">Habilitar/Inhabilitar</th>
-            </tr>
-          </thead>
-          <tbody id="table_body"></tbody>
-        </table>
-      </div>
-    <div class="small-3 column">
+
+    <div class="row">
+    <table class="responsive">
+        <thead>
+          <th>ID</th>
+          <th>Nombre de locker</th>
+          <th >Usuario</th>
+          <th >Estatus</th>
+          <th >Fecha de Inicio</th>
+          <th >Hora de inicio</th>
+          <th >Area</th>
+          <th >Habilitar o Inhabilitar</th>
+        </thead>
+
+      <tbody id="table_body"></tbody>
+    </table>
+    </div>
+
+
+
+    <div class="small-2 column right">
         <a id="aplicar" onclick="lockerAplicarCambios()" class="success large button radius">Aplicar Cambios</a>
     </div>
-    </div>
+
 
   <div id="states_types" class="reveal-modal tiny" data-reveal>
-  <h3>Escoge el nuevo estado del Locker</h3>
+    <h3>Escoge el nuevo estado del Locker</h3>
     <div class="column">
         <div class="row medium-2 switch round tiny">
-            <input class="" id="CheckBox_Inhabilitated"   onclick="lockerCambiaEstatusInhabilitado('No Disponible')" name="state_types" type="radio">
-            <label   for="CheckBox_Inhabilitated" style=" color:black ">Inhabilitar</label>
+            <input class="" id="CheckBox_Maintenance"   onclick="lockerNoDisponibleStatus('in_mainteinance')" name="state_types" type="radio">
+            <label   for="CheckBox_Maintenance" style=" color:black ">Mantenimiento</label>
         </div>
         <div class="row medium-2 switch round tiny">
-            <input  id="CheckBox_Damaged"   onclick="lockerCambiaEstatusInhabilitado('Dañado')" name="state_types" type="radio">
+            <input  id="CheckBox_Damaged"   onclick="lockerNoDisponibleStatus('is_damaged')" name="state_types" type="radio">
             <label   for="CheckBox_Damaged" style=" color:black ">Dañado</label>
         </div>
         <div class="row medium-2 switch round tiny">
-            <input  id="CheckBox_Dirty"   onclick="lockerCambiaEstatusInhabilitado('Sucio')" name="state_types" type="radio">
+            <input  id="CheckBox_Dirty"   onclick="lockerNoDisponibleStatus('is_dirty')" name="state_types" type="radio">
             <label   for="CheckBox_Dirty" style=" color:black ">Sucio</label>
         </div>
     </div>
 
-</div>
+  </div>
 
+  <div id="blocking_comments" class="reveal-modal tiny" data-reveal data-options="close_on_background_click:false">
+    <h3>¿Por que sera inhabilitado el locker?</h3>
+    <form id="comments_form" action="javascript:void(0);">
+        <div class="row">
+            <div class="large-12 columns">
+                <label>
+                    <textarea id="comments_text" placeholder="Comentarios"></textarea>
+                </label>
+            </div>
+        </div>
+        <div class="right">
+            <input class="button small right success" type="submit" value="Aceptar" onclick="submitComments()" >
+
+        </div>
+        <a class="close-reveal-modal" onclick=" cancelComments() ">&#215;</a>
+    </form>
 
   </div>
-    <script>
-      $(document).foundation();
 
-    </script>
+  </div>
+
 
   </body>
 </html>

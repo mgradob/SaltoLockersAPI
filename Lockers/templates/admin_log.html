@@ -1,12 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
-    {% include "includeScripts.html" %}
-    {% include "admin_logScripts.html" %}
+
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administración de lockers</title>
+    {% include "includeScripts.html" %}
+    <script src="{{ STATIC_URL}}js/app/admin_log.js"></script>
+
   </head>
   <body>
     <nav class="top-bar" data-topbar>
@@ -63,18 +65,20 @@
 
   <div class="row">
 
-    <div class="large-9 columns">
-        <table>
+    <div >
+        <table class="responsive">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Tiempo de inicio</th>
+              <th >Fecha</th>
+              <th> Hora </th>
               <th >Pago total</th>
               <th >Rate</th>
               <th >Descuento</th>
-              <th >Tiempo Usado</th>
-              <th >Locker</th>
+              <th >Comentarios</th>
+              <th >Tiempo Usado<br>(Horas)</th>
               <th >Usuario</th>
+              <th >Locker</th>
             </tr>
           </thead>
           <tbody id="table_body"></tbody>
@@ -82,6 +86,12 @@
       </div>
 
     </div>
+
+  <div id="commentsModal" class="reveal-modal" data-reveal data-options="close_on_background_click:false">
+      <h2>Comentarios</h2>
+      <p id="commentsText"></p>
+      <a class="close-reveal-modal" onclick="closeCommentsModal()">&#215;</a>
+  </div>
 
 
 

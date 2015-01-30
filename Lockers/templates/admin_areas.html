@@ -1,12 +1,12 @@
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
-    {% include "includeScripts.html" %}
-    {% include "admin_areasScripts.html" %}
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administración de lockers</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Administración de lockers</title>
+      {% include "includeScripts.html" %}
+      <script src="{{ STATIC_URL}}js/app/admin_areas.js"></script>
   </head>
   <body>
     <nav class="top-bar" data-topbar>
@@ -64,7 +64,7 @@
   <div class="row">
 
     <div class="large-9 columns">
-        <table>
+        <table class="responsive" >
           <thead>
             <tr>
               <th>ID</th>
